@@ -56,16 +56,16 @@ const App: React.FC = () => {
   };
 
   const handleNextView = () => {
-    if (view === 'filename' && !openFilenameInTimeline) {
-      // filename (default) → list
-      setView('list');
-    } else if (view === 'list') {
-      // list → filename (timeline)
+    if (view === 'list') {
+      // list → grid
       setView('filename');
+      setOpenFilenameInTimeline(false);
+    } else if (view === 'filename' && !openFilenameInTimeline) {
+      // grid → timeline
       setOpenFilenameInTimeline(true);
     } else if (view === 'filename' && openFilenameInTimeline) {
-      // filename (timeline) → filename (default)
-      setView('filename');
+      // timeline → list
+      setView('list');
       setOpenFilenameInTimeline(false);
     }
   };

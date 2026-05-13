@@ -7,6 +7,7 @@ import { AudioProvider } from './components/AudioProvider';
 import { SearchProvider } from './contexts/SearchContext';
 import SearchBar from './components/SearchBar';
 import headerLogo from './assets/icons/corsica logo white small.png';
+import PerformanceDashboard from './components/PerformanceDashboard';
 
 // Toggle between loading screens: 'images' or 'video'
 const LOADING_SCREEN_TYPE: 'images' | 'video' = 'video';
@@ -245,7 +246,10 @@ const App: React.FC = () => {
           />
         )}
       </div>
-      <div className="site-footer">Corsicastudios.com | @Corsicastudios | {visibleImageCount} images | {ARCHIVE_YEAR}</div>
+      <div className="site-footer" style={{ display: 'flex', alignItems: 'center' }}>
+        <span>Corsicastudios.com | @Corsicastudios | {visibleImageCount} images | {ARCHIVE_YEAR}</span>
+        <PerformanceDashboard />
+      </div>
         </>
       )}
     </AudioProvider>

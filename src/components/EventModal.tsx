@@ -15,7 +15,7 @@ export interface EventModalData {
 interface EventModalProps {
 	selectedImage: EventModalData;
 	onClose: () => void;
-	playIconSrc: string;
+	playIconSrc?: string;
 	onSearchNavigate?: () => void;
 	onSearchNavigateRegular?: () => void;
 	timelineMobilePreview?: boolean;

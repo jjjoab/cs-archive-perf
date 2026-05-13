@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import CorsicaNew from './corsicanew';
-import IndexList from './IndexList';
+import React, { Suspense, useEffect, useState } from 'react';
 import LoadingScreen from './LoadingScreen';
+import LoadingScreen2 from './LoadingScreen2';
 import LandingPage from './LandingPage';
 import { AudioProvider } from './components/AudioProvider';
 import { SearchProvider } from './contexts/SearchContext';
 import SearchBar from './components/SearchBar';
 import headerLogo from './assets/icons/corsica logo white small.png';
 import PerformanceDashboard from './components/PerformanceDashboard';
+
+const CorsicaNew = React.lazy(() => import('./corsicanew'));
+const IndexList = React.lazy(() => import('./IndexList'));
 
 // Toggle between loading screens: 'images' or 'video'
 const LOADING_SCREEN_TYPE: 'images' | 'video' = 'video';
@@ -24,7 +26,7 @@ const App: React.FC = () => {
   const [isArchiveMenuOpen, setIsArchiveMenuOpen] = useState(false);
   const useVideoLoadingScreen = LOADING_SCREEN_TYPE === 'video' && window.innerWidth > 768;
 
-  const ActiveLoadingScreen = useVideoLoadingScreen ? LoadingScreen : LoadingScreen;
+  const ActiveLoadingScreen = useVideoLoadingScreen ? LoadingScreen : LoadingScreen2;
 
   const handleEnterArchive = () => {
     setHasEnteredArchive(true);
@@ -207,44 +209,46 @@ const App: React.FC = () => {
           </button>
         </div>
         */}
-        {view === 'list' ? (
-          <IndexList
-            onShowIndexRegular={() => {
-              setOpenFilenameInTimeline(false);
-              setView('filename');
-            }}
-            onShowTimeline={() => {
-              setOpenFilenameInTimeline(true);
-              setView('filename');
-            }}
-            onNextView={handleNextView}
-            onVisibleCountChange={setVisibleImageCount}
-          />
-        ) : view === 'filename' ? (
-          <CorsicaNew
-            source="filename"
-            onShowIndexList={() => setView('list')}
-            onShowIndexRegular={() => {
-              setOpenFilenameInTimeline(false);
-              setView('filename');
-            }}
-            onNextView={handleNextView}
-            isHorizontalScroll={isHorizontalScroll}
-            setIsHorizontalScroll={setIsHorizontalScroll}
-            initialTimeline={openFilenameInTimeline}
-            onVisibleCountChange={setVisibleImageCount}
-          />
-        ) : (
-          <CorsicaNew
-            source="json"
-            onShowIndexList={() => setView('list')}
-            onShowIndexRegular={() => setView('filename')}
-            onNextView={handleNextView}
-            isHorizontalScroll={isHorizontalScroll}
-            setIsHorizontalScroll={setIsHorizontalScroll}
-            onVisibleCountChange={setVisibleImageCount}
-          />
-        )}
+        <Suspense fallback={null}>
+          {view === 'list' ? (
+            <IndexList
+              onShowIndexRegular={() => {
+                setOpenFilenameInTimeline(false);
+                setView('filename');
+              }}
+              onShowTimeline={() => {
+                setOpenFilenameInTimeline(true);
+                setView('filename');
+              }}
+              onNextView={handleNextView}
+              onVisibleCountChange={setVisibleImageCount}
+            />
+          ) : view === 'filename' ? (
+            <CorsicaNew
+              source="filename"
+              onShowIndexList={() => setView('list')}
+              onShowIndexRegular={() => {
+                setOpenFilenameInTimeline(false);
+                setView('filename');
+              }}
+              onNextView={handleNextView}
+              isHorizontalScroll={isHorizontalScroll}
+              setIsHorizontalScroll={setIsHorizontalScroll}
+              initialTimeline={openFilenameInTimeline}
+              onVisibleCountChange={setVisibleImageCount}
+            />
+          ) : (
+            <CorsicaNew
+              source="json"
+              onShowIndexList={() => setView('list')}
+              onShowIndexRegular={() => setView('filename')}
+              onNextView={handleNextView}
+              isHorizontalScroll={isHorizontalScroll}
+              setIsHorizontalScroll={setIsHorizontalScroll}
+              onVisibleCountChange={setVisibleImageCount}
+            />
+          )}
+        </Suspense>
       </div>
       <div className="site-footer" style={{ display: 'flex', alignItems: 'center' }}>
         <span>Corsicastudios.com | @Corsicastudios | {visibleImageCount} images | {ARCHIVE_YEAR}</span>

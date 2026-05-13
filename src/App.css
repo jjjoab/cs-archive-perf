@@ -3,6 +3,7 @@
   src: url('/src/assets/fonts/PPFragment-TextRegular.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @keyframes glow-move {

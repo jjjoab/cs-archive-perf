@@ -4,6 +4,7 @@
   src: url('/src/assets/fonts/PPMori-Regular.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 /* Desktop-specific timeline sizing: make posters slightly smaller and hover info larger */
@@ -30,6 +31,7 @@
   src: url('/src/assets/fonts/PPFragment-GlareRegular.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -37,6 +39,7 @@
   src: url('/src/assets/fonts/PPFragment-TextRegular.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 * {
@@ -921,6 +924,7 @@ input[type="range"].no-thumb::-moz-range-thumb {
   src: url('./assets/fonts/SlightChance-Regular.woff2') format('opentype');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -928,6 +932,7 @@ input[type="range"].no-thumb::-moz-range-thumb {
   src: url('./assets/fonts/AugsburgerSchriftCAT.ttf') format('opentype');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 /* Add utility classes */

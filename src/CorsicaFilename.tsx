@@ -1013,7 +1013,7 @@ const CorsicaFilename: React.FC<CorsicaFilenameProps> = ({ onShowIndexList, onSh
                       transform: isCenterItem ? 'scale(1.14)' : 'scale(1)'
                     } : {}}
                   >
-                    <img src={item.src} alt={item.fileName} onClick={() => setSelectedImage(item)} />
+                    <img src={item.src} alt={item.fileName} loading="lazy" decoding="async" onClick={() => setSelectedImage(item)} />
                   </div>
                   );
                 })}

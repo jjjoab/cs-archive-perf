@@ -368,6 +368,7 @@ export default function IndexList({ onShowIndexRegular, onShowTimeline, onNextVi
         <img src={controlsMenuIcon} alt="Controls" />
       </button>
 
+      {/* INDEX MENU — uncomment the block below to restore the Expand/Recordings toggles
       <button
         onClick={() => setIsIndexMenuOpen(!isIndexMenuOpen)}
         className="index-menu-btn"
@@ -399,6 +400,7 @@ export default function IndexList({ onShowIndexRegular, onShowTimeline, onNextVi
           </button>
         </div>
       )}
+      */}
 
       <div className="corsica-grid-controls">
         <div className={`controls-icons-stack ${showRightIcons ? 'show' : ''}`}>
@@ -515,7 +517,7 @@ export default function IndexList({ onShowIndexRegular, onShowTimeline, onNextVi
                               />
                             )}
                           </div>
-                          <div className="entry-date-col">{String(entry.day).padStart(2, '0')}</div>
+                          <div className="entry-date-col">{entry.day}</div>
                           <div className="entry-main-col">
                             <div className="entry-title">{entry.title}</div>
                             {entry.details && (

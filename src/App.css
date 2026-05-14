@@ -1274,9 +1274,9 @@
 
 .entry-item {
   display: grid;
-  grid-template-columns: 72px 60px 1fr auto;
+  grid-template-columns: auto 1fr auto;
   align-items: start;
-  column-gap: 12px;
+  column-gap: 10px;
   padding: 5px 0 5px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   transition: background 0.12s ease;
@@ -1290,13 +1290,9 @@
   background: rgba(255, 255, 255, 0.035);
 }
 
-/* poster thumbnail column */
+/* poster thumbnail column — hidden in default view, shown in compact */
 .entry-thumb-col {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding-top: 1px;
-  min-height: 1px;
+  display: none;
 }
 
 .entry-poster {
@@ -1310,12 +1306,13 @@
 
 /* date column */
 .entry-date-col {
-  font-size: 12px;
-  color: #777777;
-  padding-top: 2px;
+  font-size: 42px;
+  line-height: 1;
+  color: #555555;
   white-space: nowrap;
-  letter-spacing: 0.2px;
-  text-align: left;
+  letter-spacing: -0.03em;
+  text-align: right;
+  min-width: 2ch;
 }
 
 /* title + lineup column */
@@ -1556,17 +1553,12 @@
   }
 
   .entry-item {
-    grid-template-columns: 52px 90px 1fr;
-    column-gap: 10px;
-  }
-
-  .entry-poster {
-    max-width: 50px;
-    max-height: 64px;
+    grid-template-columns: auto 1fr auto;
+    column-gap: 8px;
   }
 
   .entry-date-col {
-    font-size: 11px;
+    font-size: 32px;
   }
 
   .entry-title {
